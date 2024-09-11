@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pokemon.name.toUpperCase() %></title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+    <div class="background-gif-top-left"></div>
+    <div class="background-gif-top-right"></div>
+
+    <div class="container">
+        <h1><%= pokemon.name.toUpperCase() %></h1>
+        
+        <img src="<%= pokemon.sprites.front_default %>" alt="<%= pokemon.name %> image" style="width: 200px; height: 200px;">
+
+        <p><strong>Altura:</strong> <%= pokemon.height * 10 %> Cm</p>
+        <p><strong>Peso:</strong> <%= (pokemon.weight * 0.1).toFixed(2) %> Kg</p>
+        <p><strong>Geração:</strong> <%= pokemon.generation %></p>
+
+        <h2>Tipos</h2>
+        <ul>
+            <% types.forEach(type => { %>
+                <li class="type-<%= type %>"><%= type.charAt(0).toUpperCase() + type.slice(1) %></li>
+            <% }) %>
+        </ul>
+
+        <h2>Status</h2>
+        <ul>
+            <% pokemon.stats.forEach(stat => { %>
+                <li><%= stat.stat.name %>: <%= stat.base_stat %></li>
+            <% }) %>
+        </ul>
+        
+        <% if (evolutions && evolutions.length > 1) { %>
+            <h2>Evoluções</h2>
+            <ul class="evolution-list">
+                <% evolutions.forEach(evolution => { %>
+                    <li>
+                        <a href="/detalhar/<%= evolution.name.toLowerCase().replace(/\s+/g, '-') %>">
+                            <strong><%= evolution.name %></strong><br>
+                            <img src="<%= evolution.sprite %>" alt="<%= evolution.name %> image" style="width: 100px; height: 100px;">
+                        </a>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <p>Este Pokémon não possui evoluções listadas.</p>
+        <% } %>
+
+        <a href="/" class="botao_bk">Voltar</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokeDex</title>
+    <link rel="stylesheet" href="/styles_index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>PokeDex</h1>
+
+        <form class="search-form" id="search-form">
+            <input type="text" id="search-input" name="search" placeholder="Buscar Pokémon..." class="search-input">
+            <button type="submit" class="search-button">Buscar</button>
+        </form>
+        
+        <ul id="suggestions" class="suggestions-list"></ul>
+
+        <div class="pokemon-list">
+            <% results.forEach(pokemon => { %>
+            <div class="pokemon-item">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/<%= pokemon.url.split('/')[6] %>.png" alt="<%= pokemon.name %> image" class="pokemon-image">
+                <a href="/detalhar/<%= pokemon.name %>" class="pokemon-name"><%= pokemon.name %></a>
+            </div>
+            <% }) %>
+        </div>
+
+        <div class="pagination">
+            <% if (page > 1) { %>
+                <a class="previous" href="/?page=<%= page - 1 %>">Página Anterior</a>
+            <% } %>
+
+            <a class="next" href="/?page=<%= page + 1 %>">Próxima Página</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('search-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const query = document.getElementById('search-input').value.trim().toLowerCase();
+            if (query) {
+                window.location.href = `/detalhar/${query}`;
+            }
+        });
+
+        document.getElementById('search-input').addEventListener('input', function() {
+            const query = this.value.trim().toLowerCase();
+            const suggestions = document.getElementById('suggestions');
+            suggestions.innerHTML = '';
+
+            if (query.length > 0) {
+                fetch(`/api/pokemon/suggestions?query=${query}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(pokemon => {
+                            const listItem = document.createElement('li');
+                            listItem.textContent = pokemon.name;
+                            listItem.addEventListener('click', function() {
+                                document.getElementById('search-input').value = pokemon.name;
+                                suggestions.innerHTML = '';
+                                window.location.href = `/detalhar/${pokemon.name.toLowerCase()}`;
+                            });
+                            suggestions.appendChild(listItem);
+                        });
+                    });
+            }
+        });
+    </script>
+</body>
+</html>

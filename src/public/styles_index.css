@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: url('https://wallpapers-clan.com/wp-content/uploads/2023/11/cute-pokemon-pikachu-rain-desktop-wallpaper-preview.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 20px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+
+h1 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 36px;
+    color: #ff6f00;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+.search-form {
+    display: flex;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.search-input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.search-button {
+    padding: 10px 20px;
+    background-color: #00796b;
+    color: #fff;
+    border: 1px solid #00796b;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #004d40;
+}
+
+
+.pokemon-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+}
+
+.pokemon-item {
+    display: flex;
+    align-items: center;
+    background-color: #e0f7fa;
+    border: 1px solid #b2ebf2;
+    border-radius: 8px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    max-width: 300px;
+    margin: 10px;
+}
+
+.pokemon-image {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+}
+
+.pokemon-name {
+    text-decoration: none;
+    color: #00796b;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.pokemon-item:hover {
+    background-color: #b2ebf2;
+    transform: scale(1.05);
+}
+
+.pagination {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 0 10px;
+    text-decoration: none;
+    background-color: #00796b;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination a:hover {
+    background-color: #004d40;
+}
+
+.pagination .previous {
+    background-color: #ff5722;
+}
+
+.pagination .previous:hover {
+    background-color: #e64a19;
+}
+
+.pagination .next {
+    background-color: #00796b;
+}
+
+.pagination .next:hover {
+    background-color: #004d40;
+}
